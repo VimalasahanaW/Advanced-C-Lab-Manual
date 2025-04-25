@@ -62,11 +62,11 @@ Thus, the program is verified successfully.
 
 
 
-EXP NO:2 C PROGRAM FOR PASSING STRUCTURES AS FUNCTION ARGUMENTS AND RETURNING A STRUCTURE FROM A FUNCTION
-Aim:
+## EXP NO:2 C PROGRAM FOR PASSING STRUCTURES AS FUNCTION ARGUMENTS AND RETURNING A STRUCTURE FROM A FUNCTION
+## Aim:
 To write a C program for passing structure as function and returning a structure from a function
 
-Algorithm:
+## Algorithm:
 1.	Define structure numbers with members a and b.
 2.	Declare variable n of type numbers.
 3.	Prompt the user to enter values for a and b.
@@ -75,22 +75,43 @@ Algorithm:
 6.	Print the result returned by the add function.
 7.	Return 0
  
-Program:
+## Program:
+```
+#include <stdio.h>
+struct numbers {
+    int a;
+    int b;
+};
+struct result {
+    int sum;
+};
+struct result add(struct numbers n) {
+    struct result r;
+    r.sum = n.a + n.b;
+    return r;
+}
 
-//type your code here
+int main() {
+    struct numbers n;
+    printf("Enter two integers:\n");
+    scanf("%d %d", &n.a, &n.b);
+    struct result res = add(n);
+    printf("Sum = %d\n", res.sum);
+    return 0;
+}
+```
 
 
 
 
-Output:
-
-
-//paste your output here
-
+## Output:
+![image](https://github.com/user-attachments/assets/52299863-47fd-408d-afcf-4ee701048810)
 
 
 
-Result:
+
+
+## Result:
 Thus, the program is verified successfully
 
 
@@ -186,12 +207,12 @@ Thus, the program is verified successfully
 
 
 
-Ex No 5 : C PROGRAM TO DISPLAY STUDENT DETAILS USING STRUCTURE
+## Ex No 5 : C PROGRAM TO DISPLAY STUDENT DETAILS USING STRUCTURE
 
-Aim:
+## Aim:
 The aim of this program is to dynamically allocate memory to store information about multiple subjects (name and marks), input the details for each subject, and then display the stored information. Finally, it frees the allocated memory to prevent memory leaks.
 
-Algorithm:
+## Algorithm:
 1.Input the number of subjects.
 
 2.Read the integer value n from the user, which represents the number of subjects.
@@ -218,22 +239,53 @@ Algorithm:
 
 13.End the program by returning 0.
 
-Program:
+## Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
+struct Subject {
+    char name[50];
+    int marks;
+};
 
-//type your code here
+int main() {
+    int n, i;
+    struct Subject *s;
+    printf("Enter the number of subjects: ");
+    scanf("%d", &n);
+    s = (struct Subject *)malloc(n * sizeof(struct Subject));
+    if (s == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+    for (i = 0; i < n; i++) {
+        printf("\nEnter name of subject %d: ", i + 1);
+        scanf("%s", s[i].name);
+        printf("Enter marks for %s: ", s[i].name);
+        scanf("%d", &s[i].marks);
+    }
+    printf("\n--- Subject Details ---\n");
+    for (i = 0; i < n; i++) {
+        printf("Subject %d: %s\n", i + 1, s[i].name);
+        printf("Marks: %d\n", s[i].marks);
+    }
+    free(s);
+
+    return 0;
+}
+```
+
+
+
+## Output:
+
+
+![Screenshot 2025-04-25 135733](https://github.com/user-attachments/assets/0f0943f5-4ed8-42c2-bc5a-4c4ed77995d5)
 
 
 
 
-Output:
 
 
-//paste your output here
-
-
-
-
-
-
-Result:
+## Result:
 Thus, the program is verified successfully
